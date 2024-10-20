@@ -3,9 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Cardsdata from "./CartData";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Redux/App/Features/cartSlice";
+import toast from 'react-hot-toast';
 const Home = () => {
   const [cardsData,setCardsData] = useState(Cardsdata)
- 
+  const dispatch = useDispatch();
+  const hanldeAddToCart = (item)=>{
+    dispatch(addToCart(item));
+    toast.success('Add To Cart Successfully')
+  }
   return (
     <>
      <h3 className="text-2xl font-bold my-3 text-center">Test our delicious Food</h3>
@@ -25,7 +32,7 @@ const Home = () => {
          arrimg,
           qnty} =card;
        return (
-         <Card className="max-h-[400px]" key={id} style={{ width: '18rem' }}>
+         <Card className="max-h-[430px]" key={id} style={{ width: '18rem' }}>
            <Card.Img variant="top" src={imgdata} className="h-[200px]"/>
            <Card.Body>
              <Card.Title>{dish}</Card.Title>
@@ -33,7 +40,8 @@ const Home = () => {
                {somedata}
              </Card.Text>
              <p>Price: {price}$</p>
-             <Button variant="primary">Add To Cart</Button>
+             <Button className="mt-2 w-full"
+             onClick={()=>hanldeAddToCart(card)} variant="primary">Add To Cart</Button>
            </Card.Body>
          </Card>
        );

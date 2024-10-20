@@ -5,6 +5,7 @@ import Headers from './components/Headers';
 import Home from './components/Home';
 import { Route, Routes } from 'react-router-dom';
 import CartDetails from './components/CartDetails';
+import  { Toaster } from 'react-hot-toast';
 function App() {
   
 
@@ -17,7 +18,7 @@ function App() {
       <Route path='/cart-details' element={<CartDetails/>}/>
     </Routes>
  
-  
+    <Toaster />
    </>
   )
 }
